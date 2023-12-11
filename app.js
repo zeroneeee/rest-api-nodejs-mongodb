@@ -5,15 +5,17 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
 const products = require('./routes/products');
+const users = require('./routes/users');
+
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb+srv://admin:1234@cluster0.dniixbr.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://adminDodo:admin2023@cluster0.p9hwjzl.mongodb.net/?retryWrites=true&w=majority')
         .then(() => console.log('connection successfully!'))
         .catch((err) => console.error(err))
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/usersEX');
 
 var app = express();
 
@@ -28,8 +30,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/usersEX', usersRouter);
 app.use('/products', products);
+app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
